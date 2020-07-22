@@ -1,0 +1,9 @@
+version: '3'  # version of compose format 
+
+services:
+  rest_api_dep:
+    build: .  # path is relative to docker-compose.yml localtion
+    volumes:
+      - .:/usr/src/app # mount point
+    ports:
+      - 5001:80  # host:container

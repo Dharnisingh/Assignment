@@ -1,0 +1,19 @@
+version: 0.0
+os: linux
+files:
+  # source location on ec2
+  # /opt/codedeploy-agent/deployment-root/f52caaed-a26e-4c41-b358-bc3c72684fce/d-UT13ZKM64/deployment-archive
+  - source: /
+    # destination location on ec2
+    destination: /home/
+  - source: /frontEnd/
+    destination: /var/www/html/
+
+hooks:
+  ApplicationStart:
+    # location on ec2
+    # /opt/codedeploy-agent/deployment-root/f52caaed-a26e-4c41-b358-bc3c72684fce/d-UT13ZKM64/deployment-archive
+    - location: /deployment_script.sh
+    - location: /start_api.sh
+      timeout: 300
+      runas: root

@@ -1,0 +1,22 @@
+# https://hub.docker.com/r/library/python/tags/
+FROM  ubuntu
+
+# Details of maintainer
+MAINTAINER Dharni Singh (dharnisingh@gmail.com)
+
+# Update the repository
+RUN apt-get update
+
+# Install Inginx
+RUN apt-get install python3 -y
+RUN apt-get install python3-pip -y
+RUN pip3 install Flask
+RUN pip3 install flask-restful
+RUN pip3 install -U flask-cors
+
+# Coping source in current directory into the image
+# python:3-onbuild expects the source in /usr/src/app
+COPY /home/backEnd /usr/src/app
+
+# Commands in a list
+CMD ["python3", "/usr/src/app/app.py"]
